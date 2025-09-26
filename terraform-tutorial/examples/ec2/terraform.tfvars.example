@@ -1,0 +1,29 @@
+# Example terraform.tfvars file for EC2 example
+# Copy this file to terraform.tfvars and customize the values
+
+# AWS Configuration
+aws_region = "us-west-2"
+project_name = "terraform-tutorial"
+environment = "dev"
+
+# EC2 Configuration
+instance_type = "t2.micro"
+allocate_eip = false
+
+# Storage Configuration
+volume_size = 8
+volume_type = "gp3"
+encrypt_volume = true
+
+# Monitoring
+enable_monitoring = false
+
+# Networking
+vpc_cidr = "10.0.0.0/16"
+public_subnet_cidr = "10.0.1.0/24"
+
+# SSH Configuration
+# IMPORTANT: Replace with your actual SSH public key
+# Generate with: ssh-keygen -t rsa -b 4096 -C "your-email@example.com"
+# Then copy the public key: cat ~/.ssh/id_rsa.pub
+public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC... your-email@example.com"
