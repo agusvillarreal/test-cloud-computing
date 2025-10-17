@@ -1,0 +1,25 @@
+{
+    "name": "docker-multi-stage-example",
+    "version": "1.0.0",
+    "description": "Example Node.js application for Docker multi-stage builds",
+    "main": "index.js",
+    "scripts": {
+        "build": "mkdir -p dist && echo '<!DOCTYPE html><html><head><title>Multi-stage Build</title></head><body><h1>Hello from Multi-stage Docker Build!</h1><p>This was built in the builder stage and served from the production stage.</p></body></html>' > dist/index.html",
+        "start": "node index.js",
+        "dev": "node index.js"
+    },
+    "keywords": [
+        "docker",
+        "multi-stage",
+        "nodejs",
+        "nginx"
+    ],
+    "author": "Docker Examples",
+    "license": "MIT",
+    "dependencies": {
+        "express": "^4.18.2"
+    },
+    "devDependencies": {
+        "nodemon": "^3.0.1"
+    }
+}

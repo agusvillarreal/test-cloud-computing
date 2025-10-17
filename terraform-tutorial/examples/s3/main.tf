@@ -47,6 +47,19 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "main" {
   }
 }
 
+# Configure bucket website
+resource "aws_s3_bucket_website_configuration" "main" {
+  bucket = aws_s3_bucket.main.id
+
+  index_document {
+    suffix = "index.html"
+  }
+
+  error_document {
+    key = "error.html"
+  }
+}
+
 # Configure bucket public access block
 resource "aws_s3_bucket_public_access_block" "main" {
   bucket = aws_s3_bucket.main.id
@@ -58,47 +71,47 @@ resource "aws_s3_bucket_public_access_block" "main" {
 }
 
 # Configure bucket lifecycle configuration
-resource "aws_s3_bucket_lifecycle_configuration" "main" {
-  count  = var.enable_lifecycle ? 1 : 0
-  bucket = aws_s3_bucket.main.id
-
-  rule {
-    id     = "lifecycle_rule"
-    status = "Enabled"
-
-    # Transition to IA after 30 days
-    transition {
-      days          = 30
-      storage_class = "STANDARD_IA"
-    }
-
-    # Transition to Glacier after 90 days
-    transition {
-      days          = 90
-      storage_class = "GLACIER"
-    }
-
-    # Delete old versions after 365 days
-    noncurrent_version_transition {
-      noncurrent_days = 30
-      storage_class   = "STANDARD_IA"
-    }
-
-    noncurrent_version_transition {
-      noncurrent_days = 90
-      storage_class   = "GLACIER"
-    }
-
-    noncurrent_version_expiration {
-      noncurrent_days = 365
-    }
-
-    # Delete incomplete multipart uploads after 7 days
-    abort_incomplete_multipart_upload {
-      days_after_initiation = 7
-    }
-  }
-}
+# resource "aws_s3_bucket_lifecycle_configuration" "main" {
+#   count  = var.enable_lifecycle ? 1 : 0
+#   bucket = aws_s3_bucket.main.id
+#
+#   rule {
+#     id     = "lifecycle_rule"
+#     status = "Enabled"
+#
+#     # Transition to IA after 30 days
+#     transition {
+#       days          = 30
+#       storage_class = "STANDARD_IA"
+#     }
+#
+#     # Transition to Glacier after 90 days
+#     transition {
+#       days          = 90
+#       storage_class = "GLACIER"
+#     }
+#
+#     # Delete old versions after 365 days
+#     noncurrent_version_transition {
+#       noncurrent_days = 30
+#       storage_class   = "STANDARD_IA"
+#     }
+#
+#     noncurrent_version_transition {
+#       noncurrent_days = 90
+#       storage_class   = "GLACIER"
+#     }
+#
+#     noncurrent_version_expiration {
+#       noncurrent_days = 365
+#     }
+#
+#     # Delete incomplete multipart uploads after 7 days
+#     abort_incomplete_multipart_upload {
+#       days_after_initiation = 7
+#     }
+#   }
+# }
 
 # Create bucket policy (optional)
 resource "aws_s3_bucket_policy" "main" {
@@ -127,35 +140,28 @@ resource "aws_s3_bucket_policy" "main" {
   })
 }
 
-# Create bucket notification configuration (optional)
-resource "aws_s3_bucket_notification" "main" {
-  count  = var.enable_notifications ? 1 : 0
-  bucket = aws_s3_bucket.main.id
-
-  # CloudWatch Events for object creation
-  cloudwatch_configuration {
-    events = ["s3:ObjectCreated:*"]
-    filter_prefix = var.notification_filter_prefix
-    filter_suffix = var.notification_filter_suffix
-  }
-}
-
 # Create IAM user for S3 access (optional)
 resource "aws_iam_user" "s3_user" {
   count = var.create_iam_user ? 1 : 0
-  name  = "${var.project_name}-s3-user"
+  name  = "${var.bucket_name}-s3-user"
 
   tags = {
-    Name        = "${var.project_name}-s3-user"
+    Name        = "${var.bucket_name}-s3-user"
     Environment = var.environment
     Project     = var.project_name
   }
 }
 
-# Create IAM policy for S3 access
-resource "aws_iam_policy" "s3_policy" {
+# Create IAM access key for the S3 user
+resource "aws_iam_access_key" "s3_user_key" {
   count = var.create_iam_user ? 1 : 0
-  name  = "${var.project_name}-s3-policy"
+  user  = aws_iam_user.s3_user[0].name
+}
+
+# Create IAM policy for S3 access
+resource "aws_iam_policy" "s3_user_policy" {
+  count = var.create_iam_user ? 1 : 0
+  name  = "${var.bucket_name}-s3-policy"
 
   policy = jsonencode({
     Version = "2012-10-17"
@@ -175,19 +181,19 @@ resource "aws_iam_policy" "s3_policy" {
       }
     ]
   })
+
+  tags = {
+    Name        = "${var.bucket_name}-s3-policy"
+    Environment = var.environment
+    Project     = var.project_name
+  }
 }
 
 # Attach policy to user
-resource "aws_iam_user_policy_attachment" "s3_policy_attachment" {
+resource "aws_iam_user_policy_attachment" "s3_user_policy_attachment" {
   count      = var.create_iam_user ? 1 : 0
   user       = aws_iam_user.s3_user[0].name
-  policy_arn = aws_iam_policy.s3_policy[0].arn
-}
-
-# Create access key for the user
-resource "aws_iam_access_key" "s3_user_key" {
-  count = var.create_iam_user ? 1 : 0
-  user  = aws_iam_user.s3_user[0].name
+  policy_arn = aws_iam_policy.s3_user_policy[0].arn
 }
 
 # Upload sample files to the bucket

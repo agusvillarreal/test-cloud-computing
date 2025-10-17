@@ -3,13 +3,13 @@
 variable "aws_region" {
   description = "AWS region for resources"
   type        = string
-  default     = "us-west-2"
+  default     = "us-west-1"
 }
 
 variable "project_name" {
-  description = "Name of the project (used for resource naming)"
+  description = "uag-cloud-computing"
   type        = string
-  default     = "terraform-tutorial"
+  default     = "uag-cloud-computing"
 }
 
 variable "environment" {
@@ -19,19 +19,14 @@ variable "environment" {
 }
 
 variable "bucket_name" {
-  description = "Name of the S3 bucket (must be globally unique)"
+  description = "avillarreal-uag-26092025"
   type        = string
-  
-  validation {
-    condition = can(regex("^[a-z0-9][a-z0-9-]*[a-z0-9]$", var.bucket_name)) && length(var.bucket_name) >= 3 && length(var.bucket_name) <= 63
-    error_message = "Bucket name must be 3-63 characters long, contain only lowercase letters, numbers, and hyphens, and start/end with alphanumeric characters."
-  }
 }
 
 variable "enable_versioning" {
   description = "Enable versioning for the S3 bucket"
   type        = bool
-  default     = true
+  default     = false
 }
 
 variable "encryption_algorithm" {

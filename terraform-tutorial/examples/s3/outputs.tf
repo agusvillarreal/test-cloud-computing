@@ -22,12 +22,12 @@ output "bucket_regional_domain_name" {
 
 output "bucket_website_endpoint" {
   description = "Website endpoint of the S3 bucket"
-  value       = aws_s3_bucket.main.website_endpoint
+  value       = aws_s3_bucket_website_configuration.main.website_endpoint
 }
 
 output "bucket_website_domain" {
   description = "Website domain of the S3 bucket"
-  value       = aws_s3_bucket.main.website_domain
+  value       = aws_s3_bucket_website_configuration.main.website_domain
 }
 
 output "bucket_hosted_zone_id" {
@@ -47,7 +47,7 @@ output "versioning_status" {
 
 output "encryption_algorithm" {
   description = "Encryption algorithm used for the S3 bucket"
-  value       = aws_s3_bucket_server_side_encryption_configuration.main.rule[0].apply_server_side_encryption_by_default[0].sse_algorithm
+  value       = [for rule in aws_s3_bucket_server_side_encryption_configuration.main.rule : rule.apply_server_side_encryption_by_default[0].sse_algorithm][0]
 }
 
 output "public_access_block_status" {
