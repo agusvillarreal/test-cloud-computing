@@ -92,12 +92,12 @@ When using EC2 launch type, a container instance is an EC2 instance running the 
 You manage the EC2 instances that host your containers.
 
 **Characteristics:**
-- ✅ More control over infrastructure
-- ✅ Can use reserved instances for cost savings
-- ✅ Access to instance storage
-- ❌ You manage the EC2 instances
-- ❌ More complex setup
-- ❌ Pay for instances even if not fully utilized
+- More control over infrastructure
+- Can use reserved instances for cost savings
+- Access to instance storage
+- You manage the EC2 instances
+- More complex setup
+- Pay for instances even if not fully utilized
 
 **When to Use:**
 - Need specific instance types or configurations
@@ -110,13 +110,13 @@ You manage the EC2 instances that host your containers.
 AWS manages the infrastructure - serverless containers.
 
 **Characteristics:**
-- ✅ No infrastructure management
-- ✅ Pay only for resources used
-- ✅ Automatic scaling
-- ✅ Simplified operations
-- ❌ Less control over infrastructure
-- ❌ Potentially higher cost for always-on workloads
-- ❌ Limited instance type selection
+- No infrastructure management
+- Pay only for resources used
+- Automatic scaling
+- Simplified operations
+- Less control over infrastructure
+- Potentially higher cost for always-on workloads
+- Limited instance type selection
 
 **When to Use:**
 - Want to focus on application, not infrastructure

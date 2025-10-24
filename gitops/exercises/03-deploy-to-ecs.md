@@ -565,7 +565,7 @@ const startTime = Date.now();
 app.get('/', (req, res) => {
   requestCount++;
   res.json({
-    message: 'Hello from ECS! 🚀',
+    message: 'Hello from ECS!',
     version: process.env.APP_VERSION || 'unknown',
     environment: process.env.ENVIRONMENT || 'unknown',
     hostname: require('os').hostname(),
@@ -607,7 +607,7 @@ app.get('/info', (req, res) => {
 
 if (process.env.NODE_ENV !== 'test') {
   app.listen(port, '0.0.0.0', () => {
-    console.log(`🚀 Server running on port ${port}`);
+    console.log(`Server running on port ${port}`);
     console.log(`Environment: ${process.env.ENVIRONMENT || 'unknown'}`);
     console.log(`Version: ${process.env.APP_VERSION || 'unknown'}`);
   });
@@ -791,7 +791,7 @@ jobs:
           
           echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
           
-          echo "### 🐳 Docker Image Built" >> $GITHUB_STEP_SUMMARY
+          echo "### Docker Image Built" >> $GITHUB_STEP_SUMMARY
           echo "- **Image:** \`$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG\`" >> $GITHUB_STEP_SUMMARY
           echo "- **Size:** $(docker images $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG --format '{{.Size}}')" >> $GITHUB_STEP_SUMMARY
       
@@ -864,7 +864,7 @@ jobs:
           sleep 30
           curl -f http://${{ steps.get-alb.outputs.dns }}/health || exit 1
           curl -f http://${{ steps.get-alb.outputs.dns }}/ || exit 1
-          echo "✅ Smoke tests passed!"
+          echo "Smoke tests passed!"
 
   # ==========================================================
   # Stage 4: Deploy to Production (main branch)
@@ -926,7 +926,7 @@ jobs:
           sleep 30
           curl -f http://${{ steps.get-alb.outputs.dns }}/health || exit 1
           curl -f http://${{ steps.get-alb.outputs.dns }}/ || exit 1
-          echo "✅ Smoke tests passed!"
+          echo "Smoke tests passed!"
       
       - name: Monitor deployment
         run: |
@@ -935,11 +935,11 @@ jobs:
             sleep 30
             curl -f http://${{ steps.get-alb.outputs.dns }}/health
           done
-          echo "✅ Deployment stable!"
+          echo "Deployment stable!"
       
       - name: Deployment summary
         run: |
-          echo "### 🚀 Production Deployment Complete" >> $GITHUB_STEP_SUMMARY
+          echo "### Production Deployment Complete" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "- **Version:** \`${{ needs.build-and-push.outputs.image-tag }}\`" >> $GITHUB_STEP_SUMMARY
           echo "- **Image:** \`${{ needs.build-and-push.outputs.image }}\`" >> $GITHUB_STEP_SUMMARY
@@ -989,9 +989,9 @@ jobs:
           echo "Desired Tasks: $DESIRED_COUNT"
           
           if [ "$RUNNING_COUNT" -eq "$DESIRED_COUNT" ]; then
-            echo "✅ Service is healthy!"
+            echo "Service is healthy!"
           else
-            echo "⚠️  Warning: Running count doesn't match desired count"
+            echo "Warning: Running count doesn't match desired count"
           fi
       
       - name: Check recent deployments
@@ -1102,7 +1102,7 @@ jobs:
         run: |
           echo "Verifying rollback..."
           # Add verification logic
-          echo "✅ Rollback completed successfully!"
+          echo "Rollback completed successfully!"
 ```
 
 ## Challenge Tasks
@@ -1183,16 +1183,16 @@ aws ecs describe-services \
 
 ## Best Practices Learned
 
-1. ✅ Always run tests before deployment
-2. ✅ Use proper image tagging strategy
-3. ✅ Implement health checks at multiple levels
-4. ✅ Monitor deployments in real-time
-5. ✅ Have a rollback plan ready
-6. ✅ Use deployment circuit breakers
-7. ✅ Implement gradual rollouts for production
-8. ✅ Keep task definitions in version control
-9. ✅ Use proper logging and monitoring
-10. ✅ Secure secrets and credentials
+1. Always run tests before deployment
+2. Use proper image tagging strategy
+3. Implement health checks at multiple levels
+4. Monitor deployments in real-time
+5. Have a rollback plan ready
+6. Use deployment circuit breakers
+7. Implement gradual rollouts for production
+8. Keep task definitions in version control
+9. Use proper logging and monitoring
+10. Secure secrets and credentials
 
 ## Cleanup
 
@@ -1217,13 +1217,13 @@ terraform destroy
 
 ## Next Steps
 
-- ✅ Implement monitoring with CloudWatch Dashboards
-- ✅ Add automated testing (integration, e2e)
-- ✅ Set up multiple environments (dev, staging, prod)
-- ✅ Implement advanced deployment strategies
-- ✅ Add cost optimization
-- ✅ Explore ECS Capacity Providers
-- ✅ Implement disaster recovery procedures
+- Implement monitoring with CloudWatch Dashboards
+- Add automated testing (integration, e2e)
+- Set up multiple environments (dev, staging, prod)
+- Implement advanced deployment strategies
+- Add cost optimization
+- Explore ECS Capacity Providers
+- Implement disaster recovery procedures
 
 ## Resources
 
@@ -1234,5 +1234,5 @@ terraform destroy
 
 ---
 
-**Congratulations!** 🎉 You've completed the full CI/CD pipeline from code to production deployment on AWS ECS!
+**Congratulations!** You've completed the full CI/CD pipeline from code to production deployment on AWS ECS!
 

@@ -171,7 +171,7 @@ jobs:
         run: npm test
       
       - name: Display success message
-        run: echo "✅ Tests passed successfully!"
+        run: echo "Tests passed successfully!"
 ```
 
 ### Task 6: Commit and Push
@@ -541,7 +541,7 @@ Add a step that runs only when tests fail:
 - name: Notify on failure
   if: failure()
   run: |
-    echo "❌ Tests failed!"
+    echo "Tests failed!"
     echo "Commit: ${{ github.sha }}"
     echo "Author: ${{ github.actor }}"
     # Add actual notification here (Slack, email, etc.)
@@ -620,14 +620,14 @@ jobs:
 
 ## Best Practices Learned
 
-1. ✅ Use specific action versions (`actions/checkout@v3`)
-2. ✅ Cache dependencies to speed up workflows
-3. ✅ Use secrets for sensitive data
-4. ✅ Implement proper error handling
-5. ✅ Add descriptive names to jobs and steps
-6. ✅ Use conditional execution appropriately
-7. ✅ Keep workflows modular and reusable
-8. ✅ Test workflows on feature branches before merging
+1. Use specific action versions (`actions/checkout@v3`)
+2. Cache dependencies to speed up workflows
+3. Use secrets for sensitive data
+4. Implement proper error handling
+5. Add descriptive names to jobs and steps
+6. Use conditional execution appropriately
+7. Keep workflows modular and reusable
+8. Test workflows on feature branches before merging
 
 ## Troubleshooting Tips
 
@@ -650,11 +650,11 @@ jobs:
 
 ## Next Steps
 
-- ✅ Complete Exercise 2: Docker Build and Push
-- ✅ Explore GitHub Actions Marketplace
-- ✅ Set up branch protection rules
-- ✅ Add status badges to your README
-- ✅ Learn about composite actions
+- Complete Exercise 2: Docker Build and Push
+- Explore GitHub Actions Marketplace
+- Set up branch protection rules
+- Add status badges to your README
+- Learn about composite actions
 
 ## Resources
 

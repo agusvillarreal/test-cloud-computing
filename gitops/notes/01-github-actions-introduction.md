@@ -289,10 +289,10 @@ steps:
 
 ### 1. Use Specific Action Versions
 ```yaml
-# ✅ Good - pinned version
+# Good - pinned version
 - uses: actions/checkout@v3
 
-# ❌ Bad - using latest
+# Bad - using latest
 - uses: actions/checkout@main
 ```
 

@@ -556,14 +556,14 @@ jobs:
       - name: Notify success
         if: success()
         run: |
-          echo "✅ Deployment completed successfully!"
+          echo "Deployment completed successfully!"
           echo "Version: ${{ needs.build.outputs.image-tag }}"
           echo "Image: ${{ steps.build-image.outputs.image }}"
 
       - name: Notify failure
         if: failure()
         run: |
-          echo "❌ Deployment failed!"
+          echo "Deployment failed!"
           # Add Slack/email notification here
 
   # ==========================================================
@@ -1220,36 +1220,36 @@ aws ecs update-service \
 ## Best Practices Summary
 
 ### Docker Best Practices
-- ✅ Use multi-stage builds
-- ✅ Run as non-root user
-- ✅ Implement health checks
-- ✅ Keep images small
-- ✅ Use .dockerignore
-- ✅ Tag images properly
+- Use multi-stage builds
+- Run as non-root user
+- Implement health checks
+- Keep images small
+- Use .dockerignore
+- Tag images properly
 
 ### ECS Best Practices
-- ✅ Use Fargate for simplicity
-- ✅ Implement auto-scaling
-- ✅ Use multiple availability zones
-- ✅ Configure health checks
-- ✅ Enable container insights
-- ✅ Use deployment circuit breaker
+- Use Fargate for simplicity
+- Implement auto-scaling
+- Use multiple availability zones
+- Configure health checks
+- Enable container insights
+- Use deployment circuit breaker
 
 ### CI/CD Best Practices
-- ✅ Test before deployment
-- ✅ Use proper image tagging
-- ✅ Implement rollback capability
-- ✅ Monitor deployments
-- ✅ Use environment-specific configurations
-- ✅ Secure secrets properly
+- Test before deployment
+- Use proper image tagging
+- Implement rollback capability
+- Monitor deployments
+- Use environment-specific configurations
+- Secure secrets properly
 
 ### Security Best Practices
-- ✅ Scan images for vulnerabilities
-- ✅ Use private subnets for tasks
-- ✅ Implement least privilege IAM
-- ✅ Encrypt data in transit and at rest
-- ✅ Use AWS Secrets Manager
-- ✅ Enable VPC Flow Logs
+- Scan images for vulnerabilities
+- Use private subnets for tasks
+- Implement least privilege IAM
+- Encrypt data in transit and at rest
+- Use AWS Secrets Manager
+- Enable VPC Flow Logs
 
 ## Summary
 

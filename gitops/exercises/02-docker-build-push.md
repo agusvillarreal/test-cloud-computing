@@ -458,7 +458,7 @@ jobs:
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         run: |
-          echo "✅ Docker image built and pushed successfully!"
+          echo "Docker image built and pushed successfully!"
           echo "Repository: $ECR_REGISTRY/$ECR_REPOSITORY"
           echo "Tag: ${{ steps.meta.outputs.tag }}"
           echo "Short SHA: ${{ steps.meta.outputs.short-sha }}"
@@ -495,9 +495,9 @@ jobs:
           HIGH=$(echo $SCAN_FINDINGS | jq -r '.HIGH // 0')
           
           if [ "$CRITICAL" != "0" ] || [ "$HIGH" != "0" ]; then
-            echo "⚠️  Warning: Found $CRITICAL critical and $HIGH high severity vulnerabilities"
+            echo "Warning: Found $CRITICAL critical and $HIGH high severity vulnerabilities"
           else
-            echo "✅ No critical or high severity vulnerabilities found"
+            echo "No critical or high severity vulnerabilities found"
           fi
 ```
 
@@ -607,7 +607,7 @@ jobs:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           ENVIRONMENT: ${{ needs.determine-environment.outputs.environment }}
         run: |
-          echo "### 🐳 Docker Build Summary" >> $GITHUB_STEP_SUMMARY
+          echo "### Docker Build Summary" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "- **Environment:** $ENVIRONMENT" >> $GITHUB_STEP_SUMMARY
           echo "- **Repository:** $ECR_REPOSITORY" >> $GITHUB_STEP_SUMMARY
@@ -631,10 +631,10 @@ Add a step to fail the build if the image is too large:
   run: |
     IMAGE_SIZE=$(docker images --format "{{.Size}}" $ECR_REGISTRY/$ECR_REPOSITORY:latest | sed 's/MB//')
     if (( $(echo "$IMAGE_SIZE > 500" | bc -l) )); then
-      echo "❌ Image size ($IMAGE_SIZE MB) exceeds limit (500 MB)"
+      echo "Image size ($IMAGE_SIZE MB) exceeds limit (500 MB)"
       exit 1
     fi
-    echo "✅ Image size OK: $IMAGE_SIZE MB"
+    echo "Image size OK: $IMAGE_SIZE MB"
 ```
 
 ### Challenge 2: Implement Semantic Versioning
@@ -690,16 +690,16 @@ Add vulnerability scanning with Trivy:
 
 ## Best Practices Learned
 
-1. ✅ Use multi-stage builds for smaller images
-2. ✅ Run containers as non-root users
-3. ✅ Implement proper image tagging strategy
-4. ✅ Scan images for vulnerabilities
-5. ✅ Use Docker layer caching
-6. ✅ Never commit AWS credentials
-7. ✅ Add health checks to containers
-8. ✅ Use specific base image versions
-9. ✅ Minimize image layers
-10. ✅ Use .dockerignore file
+1. Use multi-stage builds for smaller images
+2. Run containers as non-root users
+3. Implement proper image tagging strategy
+4. Scan images for vulnerabilities
+5. Use Docker layer caching
+6. Never commit AWS credentials
+7. Add health checks to containers
+8. Use specific base image versions
+9. Minimize image layers
+10. Use .dockerignore file
 
 ## Verification
 
@@ -741,11 +741,11 @@ aws ecr delete-repository \
 
 ## Next Steps
 
-- ✅ Complete Exercise 3: Deploy to ECS
-- ✅ Implement automated testing before build
-- ✅ Set up image retention policies
-- ✅ Explore AWS ECR lifecycle policies
-- ✅ Learn about container security best practices
+- Complete Exercise 3: Deploy to ECS
+- Implement automated testing before build
+- Set up image retention policies
+- Explore AWS ECR lifecycle policies
+- Learn about container security best practices
 
 ## Resources
 

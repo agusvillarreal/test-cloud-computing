@@ -2,7 +2,7 @@
 
 A comprehensive guide to implementing GitOps practices, CI/CD pipelines, and deploying Docker containers to AWS ECS and Fargate using GitHub Actions.
 
-## 📚 Course Structure
+## Course Structure
 
 ### Lecture Notes
 1. **[GitHub Actions Introduction](notes/01-github-actions-introduction.md)** - Learn the fundamentals of GitHub Actions, workflows, and automation
@@ -20,20 +20,20 @@ A comprehensive guide to implementing GitOps practices, CI/CD pipelines, and dep
 - **docker-ecs/** - Docker containerization and ECS deployment
 - **full-cicd/** - Complete end-to-end CI/CD pipeline with testing and deployment
 
-## 🎯 Learning Objectives
+## Learning Objectives
 
 By the end of this course, you will be able to:
-- ✅ Create and manage GitHub Actions workflows
-- ✅ Build Docker images automatically in CI/CD pipelines
-- ✅ Push Docker images to Amazon ECR (Elastic Container Registry)
-- ✅ Deploy containerized applications to AWS ECS
-- ✅ Understand the difference between ECS EC2 and Fargate launch types
-- ✅ Implement automated testing in CI/CD pipelines
-- ✅ Manage secrets and environment variables securely
-- ✅ Set up blue/green deployments
-- ✅ Monitor and troubleshoot deployments
+- Create and manage GitHub Actions workflows
+- Build Docker images automatically in CI/CD pipelines
+- Push Docker images to Amazon ECR (Elastic Container Registry)
+- Deploy containerized applications to AWS ECS
+- Understand the difference between ECS EC2 and Fargate launch types
+- Implement automated testing in CI/CD pipelines
+- Manage secrets and environment variables securely
+- Set up blue/green deployments
+- Monitor and troubleshoot deployments
 
-## 📋 Prerequisites
+## Prerequisites
 
 Before starting this course, you should have:
 - Completed the Docker lectures (docker-lectures/)
@@ -43,7 +43,7 @@ Before starting this course, you should have:
 - AWS CLI installed and configured
 - Basic knowledge of YAML syntax
 
-## 🚀 Getting Started
+## Getting Started
 
 1. **Review Docker Concepts**: Make sure you're comfortable with Docker basics from the previous lectures
 2. **Set Up AWS Account**: Ensure you have an AWS account with ECS and ECR permissions
@@ -60,7 +60,7 @@ Before starting this course, you should have:
    aws configure
    ```
 
-## 🛠️ Tools and Technologies Covered
+## Tools and Technologies Covered
 
 - **GitHub Actions** - CI/CD automation platform
 - **Amazon ECS** - Container orchestration service
@@ -70,7 +70,7 @@ Before starting this course, you should have:
 - **AWS CLI** - Command-line interface for AWS
 - **Terraform** (optional) - Infrastructure as Code
 
-## 📖 Recommended Learning Path
+## Recommended Learning Path
 
 1. Start with the GitHub Actions introduction
 2. Set up your first workflow (Exercise 1)
@@ -80,7 +80,7 @@ Before starting this course, you should have:
 6. Complete the full ECS deployment (Exercise 3)
 7. Explore advanced examples
 
-## 🔗 Related Resources
+## Related Resources
 
 - [Docker Lectures](../docker-lectures/) - Foundation for container concepts
 - [Terraform Tutorial](../terraform-tutorial/) - Infrastructure as Code for AWS resources
@@ -88,7 +88,7 @@ Before starting this course, you should have:
 - [AWS ECS Documentation](https://docs.aws.amazon.com/ecs/)
 - [AWS Fargate Documentation](https://docs.aws.amazon.com/fargate/)
 
-## 💡 Best Practices
+## Best Practices
 
 - Always use secrets for sensitive data
 - Tag your Docker images properly
@@ -98,14 +98,14 @@ Before starting this course, you should have:
 - Use infrastructure as code when possible
 - Implement proper rollback strategies
 
-## 📝 Notes
+## Notes
 
 - All examples assume you have proper AWS permissions
 - Some services may incur AWS charges
 - Always clean up resources after practicing
 - Use IAM roles with least privilege principle
 
-## 🤝 Contributing
+## Contributing
 
 Feel free to add more examples, improve documentation, or suggest better practices!
 
